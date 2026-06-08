@@ -1,0 +1,83 @@
+{
+  // Editor settings
+  "formatter": "prettier",
+  "format_on_save": "on",
+  "tab_size": 2,
+  "soft_wrap": "bounded",
+  "preferred_line_length": 80,
+  "remove_trailing_whitespace_on_save": true,
+  "ensure_final_newline_on_save": true,
+  "linked_edits": true,
+  "file_scan_exclusions": [
+    "**/node_modules",
+    "**/dist",
+    "**/build",
+    "**/bin",
+    "**/coverage",
+    "**/.bun",
+    "**/bun.lockb",
+    "**/.turbo",
+    "**/.next",
+    "**/out",
+    "**/.git",
+  ],
+  "show_completions_on_input": true,
+  "completions": {
+    "lsp_insert_mode": "replace",
+  },
+
+  // LSP settings
+  "lsp": {
+    "eslint": {
+      "settings": {
+        "codeActionsOnSave": {
+          "rules": ["import/no-unused-modules"],
+        },
+        "format": true,
+        "quiet": false,
+        "onIgnoredFiles": "warn",
+      },
+    },
+    "tailwindcss-language-server": {
+      "settings": {
+        "includeLanguages": {
+          "plaintext": "html",
+        },
+        "experimental": {
+          "classRegex": {
+            "clsx": "clsx\\(([^)]*)\\)",
+            "cva": "cva\\(([^)]*)\\)",
+            "cn": "cn\\(([^)]*)\\)",
+            "twMerge": "twMerge\\(([^)]*)\\)",
+            "classNames": "classNames\\(([^)]*)\\)",
+          },
+        },
+      },
+    },
+  },
+
+  // Language specific overrides
+  "languages": {
+    "JavaScript": {
+      "formatter": "prettier",
+      "format_on_save": "on",
+      "tab_size": 2,
+      "preferred_line_length": 80,
+    },
+    "TypeScript": {
+      "formatter": "prettier",
+      "format_on_save": "on",
+      "tab_size": 2,
+      "preferred_line_length": 80,
+    },
+    "TSX": {
+      "formatter": "prettier",
+      "format_on_save": "on",
+      "tab_size": 2,
+      "preferred_line_length": 80,
+    },
+    "CSS": { "formatter": "prettier", "format_on_save": "on", "tab_size": 2 },
+    "HTML": { "formatter": "prettier", "format_on_save": "on", "tab_size": 2 },
+    "JSON": { "formatter": "prettier", "format_on_save": "on", "tab_size": 2 },
+  },
+}
