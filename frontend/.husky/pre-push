@@ -1,0 +1,2 @@
+cd frontend
+pnpm typecheck && pnpm test
