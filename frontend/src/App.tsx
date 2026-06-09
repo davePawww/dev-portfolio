@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-        Test
+        Testing
       </motion.div>
       <Button className="font-bold text-red-100">Test</Button>
     </>
