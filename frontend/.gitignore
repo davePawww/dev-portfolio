@@ -48,3 +48,6 @@ Thumbs.db
 *.d.ts.map
 *.tsbuildinfo
 .dccache
+
+*storybook.log
+storybook-static
