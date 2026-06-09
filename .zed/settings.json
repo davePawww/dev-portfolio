@@ -31,7 +31,7 @@
     "eslint": {
       "settings": {
         "codeActionsOnSave": {
-          "rules": ["import/no-unused-modules"],
+          "rules": ["unused-imports/no-unused-imports"],
         },
         "format": true,
         "quiet": false,
