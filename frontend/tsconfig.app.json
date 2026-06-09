@@ -23,7 +23,9 @@
 
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+
+    "strict": true
   },
   "include": ["src", ".storybook/**/*", "vitest.shims.d.ts"]
 }

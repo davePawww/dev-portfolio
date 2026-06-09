@@ -70,6 +70,12 @@ export default defineConfig([
       ],
     },
   },
+  {
+    files: ['src/routes/**'],
+    rules: {
+      'react-refresh/only-export-components': 'off',
+    },
+  },
   ...pluginQuery.configs['flat/recommended'],
   ...storybook.configs['flat/recommended'],
   eslintConfigPrettier,
