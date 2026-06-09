@@ -36,6 +36,12 @@ export default defineConfig([
         tsconfigRootDir: import.meta.dirname,
       },
     },
+    // commented for now and will ignore the warning when linting
+    // settings: {
+    //   react: {
+    //     version: 'detect'
+    //   }
+    // },
     rules: {
       'react/jsx-no-useless-fragment': 'error',
       'react/self-closing-comp': 'error',
