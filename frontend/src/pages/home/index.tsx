@@ -1,3 +1,3 @@
 export default function HomePage() {
-  return <p>Home</p>;
+  return <p>Home update check</p>;
 }
