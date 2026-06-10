@@ -12,6 +12,7 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { FaSquareXTwitter } from 'react-icons/fa6';
 import { useTheme } from '@/hooks/use-theme';
 import { Separator } from '@/components/ui/separator';
+import { motion } from 'motion/react';
 
 function Header() {
   const { theme, setTheme } = useTheme();
@@ -25,7 +26,12 @@ function Header() {
   };
 
   return (
-    <header className="flex items-center justify-between p-3">
+    <motion.header
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.75, ease: 'easeInOut' }}
+      className="flex items-center justify-between"
+    >
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
@@ -47,10 +53,6 @@ function Header() {
       </NavigationMenu>
 
       <div className="flex h-5 items-center gap-2">
-        <Button size="icon-lg" variant="ghost" onClick={handleToggleTheme}>
-          {theme === 'light' ? <Moon /> : <Sun />}
-        </Button>
-        <Separator orientation="vertical" />
         <Button variant="ghost" size="icon-lg" asChild>
           <a href="https://github.com/davePawww" target="_blank" rel="noopener noreferrer">
             <FaGithub />
@@ -72,8 +74,12 @@ function Header() {
             <FaLinkedin />
           </a>
         </Button>
+        <Separator orientation="vertical" />
+        <Button size="icon-lg" variant="ghost" onClick={handleToggleTheme}>
+          {theme === 'light' ? <Moon /> : <Sun />}
+        </Button>
       </div>
-    </header>
+    </motion.header>
   );
 }
 

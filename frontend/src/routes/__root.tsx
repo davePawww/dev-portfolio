@@ -1,8 +1,8 @@
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
 import type { RouterContext } from '@/types/common.types';
 import Header from '@/components/header';
+import Footer from '@/components/footer';
+import Container from '@/components/container';
 
 export const Route = createRootRouteWithContext<RouterContext>()({
   component: RootLayout,
@@ -11,10 +11,15 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 function RootLayout() {
   return (
     <>
-      <Header />
-      <Outlet />
-      <ReactQueryDevtools initialIsOpen={false} />
-      <TanStackRouterDevtools initialIsOpen={false} />
+      <Container>
+        <Header />
+        <main className="flex-1">
+          <Outlet />
+        </main>
+        <Footer />
+      </Container>
+      {/*<ReactQueryDevtools initialIsOpen={false} />
+      <TanStackRouterDevtools initialIsOpen={false} />*/}
     </>
   );
 }
