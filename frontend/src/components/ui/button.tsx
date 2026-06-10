@@ -4,6 +4,7 @@ import { Slot } from 'radix-ui';
 
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/variants';
+import { motion } from 'motion/react';
 
 function Button({
   className,
@@ -28,4 +29,10 @@ function Button({
   );
 }
 
-export { Button };
+const AnimatedButton = motion.create(
+  ({ className, ...props }: React.ComponentProps<typeof Button>) => (
+    <Button className={cn('transition-none', className)} {...props} />
+  ),
+);
+
+export { Button, AnimatedButton };
