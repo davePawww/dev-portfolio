@@ -1,7 +1,7 @@
-import type { RouterContext } from '@/main';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import { createRootRouteWithContext, Link, Outlet } from '@tanstack/react-router';
+import type { RouterContext } from '@/types/common.types';
 
 export const Route = createRootRouteWithContext<RouterContext>()({
   component: RootLayout,
