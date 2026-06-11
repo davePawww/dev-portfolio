@@ -70,4 +70,6 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Deploy Studio
-        run: npx sanity deploy --token ${{ secrets.SANITY_AUTH_TOKEN }}
+        run: npx sanity deploy
+        env:
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
