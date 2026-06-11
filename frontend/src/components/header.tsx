@@ -14,6 +14,13 @@ import { FaSquareXTwitter } from 'react-icons/fa6';
 import { useTheme } from '@/hooks/use-theme';
 import { Separator } from '@/components/ui/separator';
 import { motion, AnimatePresence } from 'motion/react';
+import { useProfile } from '@/hooks/use-profile';
+
+const fallbackSocialLinks = {
+  github: 'https://github.com/davePawww',
+  twitter: 'https://x.com/davePawww',
+  linkedin: 'https://www.linkedin.com/in/davepaurillo/',
+};
 
 const navItems = [
   { to: '/', label: 'Home' },
@@ -25,9 +32,45 @@ const navItems = [
 function Header() {
   const { theme, setTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { data } = useProfile();
+
+  const socialLinks = {
+    github:
+      data?.socialLinks.find((item) => item.platform === 'github')?.url ??
+      fallbackSocialLinks.github,
+    twitter:
+      data?.socialLinks.find((item) => item.platform === 'twitter')?.url ??
+      fallbackSocialLinks.twitter,
+    linkedin:
+      data?.socialLinks.find((item) => item.platform === 'linkedin')?.url ??
+      fallbackSocialLinks.linkedin,
+  };
+
+  const resumeUrl = data?.resumeUrl ?? null;
 
   const handleToggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
+  };
+
+  const handleDownloadResume = async () => {
+    if (!resumeUrl) {
+      return;
+    }
+
+    const response = await fetch(resumeUrl);
+    if (!response.ok) {
+      return;
+    }
+
+    const blob = await response.blob();
+    const blobUrl = URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = blobUrl;
+    anchor.download = 'Dave_Paurillo_Resume.pdf';
+    document.body.append(anchor);
+    anchor.click();
+    anchor.remove();
+    URL.revokeObjectURL(blobUrl);
   };
 
   return (
@@ -60,28 +103,29 @@ function Header() {
       </Button>
 
       <div className="flex h-5 items-center gap-1 md:gap-2">
-        <Button size="sm" className="hidden md:inline-flex">
+        <Button
+          size="sm"
+          className="hidden md:inline-flex"
+          onClick={() => void handleDownloadResume()}
+          disabled={!resumeUrl}
+        >
           <FaFileDownload className="size-3" /> Download Resume
         </Button>
         <Separator orientation="vertical" className="hidden md:block" />
         <Button variant="ghost" size="icon-lg" asChild className="hidden md:inline-flex">
-          <a href="https://github.com/davePawww" target="_blank" rel="noopener noreferrer">
+          <a href={socialLinks.github} target="_blank" rel="noopener noreferrer">
             <FaGithub />
           </a>
         </Button>
         <Separator orientation="vertical" className="hidden md:block" />
         <Button variant="ghost" size="icon-lg" asChild className="hidden md:inline-flex">
-          <a href="https://x.com/davePawww" target="_blank" rel="noopener noreferrer">
+          <a href={socialLinks.twitter} target="_blank" rel="noopener noreferrer">
             <FaSquareXTwitter />
           </a>
         </Button>
         <Separator orientation="vertical" className="hidden md:block" />
         <Button variant="ghost" size="icon-lg" asChild className="hidden md:inline-flex">
-          <a
-            href="https://www.linkedin.com/in/davepaurillo/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer">
             <FaLinkedin />
           </a>
         </Button>
@@ -133,23 +177,19 @@ function Header() {
               </nav>
               <div className="mt-auto flex items-center justify-center gap-2">
                 <Button variant="ghost" size="icon" asChild>
-                  <a href="https://github.com/davePawww" target="_blank" rel="noopener noreferrer">
+                  <a href={socialLinks.github} target="_blank" rel="noopener noreferrer">
                     <FaGithub />
                   </a>
                 </Button>
                 <Separator orientation="vertical" />
                 <Button variant="ghost" size="icon" asChild>
-                  <a href="https://x.com/davePawww" target="_blank" rel="noopener noreferrer">
+                  <a href={socialLinks.twitter} target="_blank" rel="noopener noreferrer">
                     <FaSquareXTwitter />
                   </a>
                 </Button>
                 <Separator orientation="vertical" />
                 <Button variant="ghost" size="icon" asChild>
-                  <a
-                    href="https://www.linkedin.com/in/davepaurillo/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer">
                     <FaLinkedin />
                   </a>
                 </Button>
