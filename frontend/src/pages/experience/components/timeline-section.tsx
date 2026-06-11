@@ -27,7 +27,7 @@ export function TimelineSection({ title, description, items }: TimelineSectionPr
   return (
     <motion.section
       variants={sectionVariants}
-      className="border-border/60 bg-card/40 rounded-[2rem] border p-6 backdrop-blur-sm sm:p-8"
+      className="border-border/60 bg-card/40 h-fit rounded-[2rem] border p-6 backdrop-blur-sm sm:p-8"
     >
       <div className="mb-8 space-y-2">
         <p className="text-muted-foreground text-xs font-medium tracking-[0.3em] uppercase">
