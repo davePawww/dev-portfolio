@@ -15,7 +15,7 @@ function RootLayout() {
     <>
       <Container>
         <Header />
-        <main className="flex-1">
+        <main className="flex-1 overflow-y-auto md:overflow-hidden">
           <Outlet />
         </main>
         <Footer />
