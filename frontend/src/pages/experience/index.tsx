@@ -1,78 +1,6 @@
 import { motion, type Variants } from 'motion/react';
+import { useExperience } from '@/hooks/use-experience';
 import { TimelineSection } from './components/timeline-section';
-import type { TimelineEntry } from './components/timeline-item';
-
-const education: TimelineEntry[] = [
-  {
-    id: 'education-university',
-    period: '2015 - 2019',
-    title: 'B.S. in Computer Science',
-    organization: 'University of California, San Diego',
-    location: 'La Jolla, CA',
-    description:
-      'Built a strong foundation in software engineering, algorithms, and human-centered design while working across both individual and team-based product projects.',
-    highlights: [
-      'Focused on full-stack application development and interface design.',
-      'Collaborated on capstone work centered on scalable web systems.',
-    ],
-  },
-  {
-    id: 'education-continuing',
-    period: '2019 - Present',
-    title: 'Continuing Education',
-    organization: 'Independent Study and Applied Learning',
-    location: 'Remote',
-    description:
-      'Continued sharpening frontend architecture, design systems, performance, and content platform workflows through hands-on product work and self-directed study.',
-    highlights: [
-      'Deepened expertise in React ecosystems, TypeScript, and modern frontend tooling.',
-      'Regularly explored CMS-driven product patterns and UX refinement.',
-    ],
-  },
-];
-
-const workExperience: TimelineEntry[] = [
-  {
-    id: 'work-senior-frontend',
-    period: '2023 - Present',
-    title: 'Senior Frontend Engineer',
-    organization: 'Acme Digital Studio',
-    location: 'San Diego, CA',
-    description:
-      'Led frontend implementation across marketing sites and product surfaces, balancing interaction polish with maintainable system design.',
-    highlights: [
-      'Delivered performant React interfaces with a strong focus on accessibility and responsive behavior.',
-      'Partnered with design to turn high-fidelity concepts into reusable UI patterns.',
-      'Improved development velocity by tightening component conventions and project structure.',
-    ],
-  },
-  {
-    id: 'work-product-engineer',
-    period: '2021 - 2023',
-    title: 'Product Engineer',
-    organization: 'Northstar Labs',
-    location: 'Remote',
-    description:
-      'Worked across the product lifecycle, from feature definition to delivery, with an emphasis on thoughtful user experience and reliable implementation.',
-    highlights: [
-      'Built internal and customer-facing tools using React, TypeScript, and API-driven workflows.',
-      'Contributed to a cleaner handoff between design, engineering, and content teams.',
-    ],
-  },
-  {
-    id: 'work-frontend-developer',
-    period: '2019 - 2021',
-    title: 'Frontend Developer',
-    organization: 'Studio Meridian',
-    location: 'Los Angeles, CA',
-    description:
-      'Created polished marketing experiences and interactive web pages for clients across technology, media, and lifestyle brands.',
-    highlights: [
-      'Implemented visually detailed interfaces while preserving performance and consistency.',
-      'Supported iterative launches with fast feedback cycles and production-minded QA.',
-    ],
-  },
-];
 
 const pageVariants: Variants = {
   hidden: {},
@@ -89,6 +17,26 @@ const introVariants: Variants = {
 };
 
 export default function ExperiencePage() {
+  const { data, isPending } = useExperience();
+
+  if (isPending) {
+    return (
+      <section className="flex h-full flex-col overflow-y-auto">
+        <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-10 px-4 py-6 md:py-12">
+          <div className="max-w-3xl space-y-4">
+            <div className="bg-muted h-4 w-24 animate-pulse rounded" />
+            <div className="bg-muted h-12 w-3/4 animate-pulse rounded-lg" />
+            <div className="bg-muted h-6 w-1/2 animate-pulse rounded" />
+          </div>
+          <div className="bg-muted h-96 animate-pulse rounded-[2rem]" />
+        </div>
+      </section>
+    );
+  }
+
+  const education = data?.education ?? [];
+  const workExperience = data?.work ?? [];
+
   return (
     <section className="flex h-full flex-col overflow-y-auto">
       <motion.div

@@ -44,7 +44,7 @@ export function TimelineSection({ title, description, items }: TimelineSectionPr
         className="before:bg-border/80 relative space-y-6 before:absolute before:top-2 before:left-[0.35rem] before:h-[calc(100%-1rem)] before:w-px before:content-['']"
       >
         {items.map((item) => (
-          <TimelineItem key={item.id} entry={item} />
+          <TimelineItem key={item._id} entry={item} />
         ))}
       </motion.ol>
     </motion.section>

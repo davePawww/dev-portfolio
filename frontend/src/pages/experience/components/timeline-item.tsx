@@ -1,7 +1,7 @@
 import { motion, type Variants } from 'motion/react';
 
 export type TimelineEntry = {
-  id: string;
+  _id: string;
   period: string;
   title: string;
   organization: string;

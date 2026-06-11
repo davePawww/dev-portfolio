@@ -72,7 +72,7 @@ export default function HomePage() {
         }}
         initial="hidden"
         animate="visible"
-        className="w-full space-y-1.5 py-6 md:w-1/2 md:overflow-y-auto md:py-12 lg:overflow-y-hidden"
+        className="w-full space-y-1.5 py-6 md:w-1/2 md:overflow-y-auto md:py-12"
       >
         <motion.h1
           variants={{
@@ -97,6 +97,7 @@ export default function HomePage() {
             hidden: { opacity: 0 },
             visible: { opacity: 1, transition: { duration: 0.6, ease: 'easeInOut' } },
           }}
+          className="mt-4"
         >
           <RichText value={profile.bio} />
         </motion.div>
