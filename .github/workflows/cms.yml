@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: production
-      url: https://${{ secrets.SANITY_STUDIO_HOST }}.sanity.studio
+      # url: https://<your-host>.sanity.studio (set after first deploy)
     steps:
       - uses: actions/checkout@v5
 
