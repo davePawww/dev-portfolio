@@ -13,5 +13,19 @@ export const structure: StructureResolver = (S) =>
             .documentId(profileSingletonId)
             .title('Profile'),
         ),
-      ...S.documentTypeListItems().filter((item) => item.getId() !== 'profile'),
+      S.divider(),
+      S.listItem()
+        .title('Technologies')
+        .child(
+          S.list()
+            .title('Technologies')
+            .items([
+              S.documentTypeListItem('techCategory').title('Categories'),
+              S.documentTypeListItem('technology').title('Technologies'),
+            ]),
+        ),
+      S.divider(),
+      ...S.documentTypeListItems().filter(
+        (item) => !['profile', 'techCategory', 'technology'].includes(item.getId() ?? ''),
+      ),
     ])
